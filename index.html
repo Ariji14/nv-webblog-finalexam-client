@@ -7,6 +7,41 @@
   </head>
   <body>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
+    <script>
+      // สร้าง function เพื่อส่ง request ไปยัง backend
+      function fetchDataFromBackend() {
+        // URL ของ backend
+        var backendUrl = "http://10.10.59.14:8081";
+
+        // สร้าง XMLHttpRequest object
+        var xhr = new XMLHttpRequest();
+
+        // กำหนดว่าจะใช้ method GET หรือ POST ตามที่ต้องการ
+        xhr.open("GET", backendUrl, true);
+
+        // กำหนด callback function สำหรับการจัดการข้อมูลที่ได้รับ
+        xhr.onload = function() {
+          if (xhr.status === 200) {
+            // ดึงข้อมูลที่ได้มาจาก response
+            var responseData = xhr.responseText;
+
+            // ทำอะไรกับข้อมูลที่ได้รับ ตามที่คุณต้องการ
+            // ยังไงก็ตามที่คุณต้องการแสดงผล
+            console.log(responseData);
+          } else {
+            // กรณีเกิดข้อผิดพลาด
+            console.error("เกิดข้อผิดพลาด: " + xhr.status);
+          }
+        };
+
+        // ส่ง request
+        xhr.send();
+      }
+
+      // เรียกใช้งาน function เพื่อดึงข้อมูลจาก backend เมื่อหน้าเว็บโหลดเสร็จ
+      window.onload = fetchDataFromBackend;
+    </script>
+
+    
   </body>
 </html>
